@@ -1,0 +1,10 @@
+# Ignora a pasta do ambiente virtual
+.venv/
+
+# Variáveis de Ambiente (evitando vazar senhas de forma pública)
+.env
+
+# Arquivos Jupyter e Python vão para commit
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
