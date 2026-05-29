@@ -246,7 +246,7 @@ with tab_cockpit:
     with col_q:
         st.markdown("##### 🕵️ Diagnóstico de Quartil Corporativo")
         roe_q1 = np.percentile(df_concorrentes['IND_ROE'], 25) if not df_concorrentes.empty else 0
-        roe_q2 = np.percentile(df_concorrentes['IND_ROE'], 50) if not df_conconrrentes.empty else 0
+        roe_q2 = np.percentile(df_concorrentes['IND_ROE'], 50) if not df_concorrentes.empty else 0
         roe_q3 = np.percentile(df_concorrentes['IND_ROE'], 75) if not df_concorrentes.empty else 0
         roe_empresa = df_foco_ativo['IND_ROE']
         
