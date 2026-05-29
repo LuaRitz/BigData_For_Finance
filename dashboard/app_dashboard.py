@@ -232,7 +232,7 @@ with tab_cockpit:
         df_melt = df_concorrentes.melt(id_vars=['RAZAO_SOCIAL'], value_vars=metrics_list, var_name='Met', value_name='Val')
         df_melt['Met_Desc'] = df_melt['Met'].map({'IND_ROE': 'ROE %', 'IND_MARGEM_LIQUIDA': 'Margem Líquida %', 'IND_LIQUIDEZ_CORRENTE': 'Liquidez Corrente (Ratio)'})
         
-        fig_box = px.boxplot(df_melt, x='Met_Desc', y='Val', title="Distribuição de Parâmetros Concorrenciais", points=False, color_discrete_sequence=['#475569'])
+        fig_box = px.box(df_melt, x='Met_Desc', y='Val', title="Distribuição de Parâmetros Concorrenciais", points=False, color_discrete_sequence=['#475569'])
         
         for m in metrics_list:
             fig_box.add_trace(go.Scatter(
