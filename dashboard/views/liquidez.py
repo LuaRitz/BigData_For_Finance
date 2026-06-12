@@ -158,7 +158,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 2 — Gauges visuais
     # ------------------------------------------------------------------
-    st.markdown("####Termômetros de Solvência")
+    st.markdown("#### Termômetros de Solvência")
     g1, g2, g3, g4 = st.columns(4)
     with g1:
         st.plotly_chart(_gauge(v_lg, "Liquidez Geral", 0, 3, 1.0, 0.7), use_container_width=True)
