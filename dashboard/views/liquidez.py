@@ -177,7 +177,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     col_hist, col_box = st.columns([1, 1])
 
     with col_hist:
-        st.markdown("####Evolução Histórica dos Índices")
+        st.markdown("#### Evolução Histórica dos Índices")
 
         # Filtra todos os períodos da empresa selecionada no df_master (passado via concorrentes trick)
         cnpj = df_foco.get("CNPJ_CIA", None)
@@ -215,7 +215,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
             st.info("Histórico multi-período não disponível neste escopo de filtro.")
 
     with col_box:
-        st.markdown("####Posição no Mercado (Boxplot Setorial)")
+        st.markdown("#### Posição no Mercado (Boxplot Setorial)")
         cols_box = {
             "Liq. Geral": "IND_LIQUIDEZ_GERAL",
             "Liq. Corrente": "IND_LIQUIDEZ_CORRENTE",
@@ -263,7 +263,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     col_diag, col_ac = st.columns([1, 1])
 
     with col_diag:
-        st.markdown("####Diagnóstico de Solvência")
+        st.markdown("#### Diagnóstico de Solvência")
 
         def _diag(label, valor, ok_threshold, warn_threshold, maior_melhor=True):
             if pd.isna(valor):
@@ -332,7 +332,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 5 — Tabela-resumo
     # ------------------------------------------------------------------
-    st.markdown("####Tabela-Resumo dos Indicadores de Liquidez")
+    st.markdown("#### Tabela-Resumo dos Indicadores de Liquidez")
 
     resumo = pd.DataFrame({
         "Indicador": [

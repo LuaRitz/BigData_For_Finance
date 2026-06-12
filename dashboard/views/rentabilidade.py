@@ -103,7 +103,7 @@ def render_rentabilidade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 1 — Cascata DRE Waterfall
     # ------------------------------------------------------------------
-    st.markdown("####Cascata de Margens (DRE Waterfall)")
+    st.markdown("#### Cascata de Margens (DRE Waterfall)")
     col_wf, col_lpa = st.columns([2, 1])
 
     with col_wf:
@@ -171,7 +171,7 @@ def render_rentabilidade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 2 — KPI Cards: Margens
     # ------------------------------------------------------------------
-    st.markdown("####Indicadores de Margem")
+    st.markdown("#### Indicadores de Margem")
     c1, c2, c3 = st.columns(3)
     with c1:
         _kpi_card_rent("Margem Bruta", v_mb * 100 if not pd.isna(v_mb) else np.nan, "%",
@@ -191,7 +191,7 @@ def render_rentabilidade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 3 — KPI Cards: Retornos + Comparativo Setor
     # ------------------------------------------------------------------
-    st.markdown("####Retornos sobre Investimento")
+    st.markdown("#### Retornos sobre Investimento")
     c4, c5, c6 = st.columns(3)
     with c4:
         _kpi_card_rent("ROA — Retorno s/ Ativos", v_roa * 100 if not pd.isna(v_roa) else np.nan, "%",
@@ -214,7 +214,7 @@ def render_rentabilidade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     col_comp, col_hist = st.columns([1, 1])
 
     with col_comp:
-        st.markdown("####Comparativo com Setor (Boxplot)")
+        st.markdown("#### Comparativo com Setor (Boxplot)")
         cols_box = {
             "Margem Bruta %": "IND_MARGEM_BRUTA",
             "Margem Op. %": "IND_MARGEM_OPERACIONAL",
@@ -260,7 +260,7 @@ def render_rentabilidade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
         st.plotly_chart(fig_box, use_container_width=True)
 
     with col_hist:
-        st.markdown("####Evolução Histórica das Margens")
+        st.markdown("#### Evolução Histórica das Margens")
         cnpj = df_foco.get("CNPJ_CIA", None)
         if cnpj is not None and not df_concorrentes.empty and "CNPJ_CIA" in df_concorrentes.columns:
             df_hist = df_concorrentes[df_concorrentes["CNPJ_CIA"] == cnpj].sort_values("DT_REFER")
@@ -300,7 +300,7 @@ def render_rentabilidade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 5 — Diagnóstico qualitativo
     # ------------------------------------------------------------------
-    st.markdown("####Diagnóstico de Rentabilidade")
+    st.markdown("#### Diagnóstico de Rentabilidade")
     d1, d2 = st.columns(2)
 
     with d1:
@@ -348,7 +348,7 @@ def render_rentabilidade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 6 — Tabela-resumo
     # ------------------------------------------------------------------
-    st.markdown("####Tabela-Resumo dos Indicadores de Rentabilidade")
+    st.markdown("#### Tabela-Resumo dos Indicadores de Rentabilidade")
     resumo = pd.DataFrame({
         "Indicador": [
             "Margem Bruta",
