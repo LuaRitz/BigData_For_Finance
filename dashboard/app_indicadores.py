@@ -162,7 +162,7 @@ with st.sidebar:
 
     # Ano
     anos_disp = sorted(df_master["ANO"].unique(), reverse=True)
-    ano_sel = st.selectbox("📅 Ano Fiscal", anos_disp, index=0)
+    ano_sel = st.multiselect("📅 Anos Fiscais", anos_disp, default=[anos_disp[0]])
 
     # Escopo geográfico (herdado do app principal)
     # Como a gold não tem UF física, mantemos apenas escopo setorial
@@ -193,7 +193,7 @@ with st.sidebar:
 # ==============================================================================
 # 5. FILTROS DERIVADOS
 # ==============================================================================
-df_ano = df_master[df_master["ANO"] == ano_sel]
+df_ano = df_master[df_master["ANO"].isin(ano_sel)]
 df_foco_df = df_ano[df_ano["CNPJ_CIA"] == cnpj_sel]
 
 if df_foco_df.empty:
@@ -222,7 +222,7 @@ st.markdown(f"Análise detalhada: **{nome_empresa}** · Exercício **{ano_sel}**
 st.markdown(
     f"<div class='governance-badge'>Origem: layer_03_gold (PostgreSQL)</div>"
     f"<div class='governance-badge'>Setor: {setor_empresa}</div>"
-    f"<div class='governance-badge'>Benchmark: {escopo_sel} · {len(df_concorrentes)} empresas</div>"
+    f"<div class='governance-badge'>Benchmark: {escopo_sel} · {len(df_concorrentes)} registros</div>"
     f"<div class='governance-badge'>Períodos disponíveis: {len(df_hist_empresa)}</div>",
     unsafe_allow_html=True,
 )
@@ -238,7 +238,7 @@ if "Liquidez" in view_sel:
         df_foco=df_foco,
         df_concorrentes=df_concorrentes,
         nome_empresa=nome_empresa,
-        ano=ano_sel,
+        ano=", ".join(ano_sel),
         escopo=escopo_sel,
     )
 
@@ -248,7 +248,7 @@ elif "Endividamento" in view_sel:
         df_foco=df_foco,
         df_concorrentes=df_concorrentes,
         nome_empresa=nome_empresa,
-        ano=ano_sel,
+        ano=", ".join(ano_sel),
         escopo=escopo_sel,
     )
 
@@ -258,7 +258,7 @@ elif "Rentabilidade" in view_sel:
         df_foco=df_foco,
         df_concorrentes=df_concorrentes,
         nome_empresa=nome_empresa,
-        ano=ano_sel,
+        ano=", ".join(ano_sel),
         escopo=escopo_sel,
     )
 
@@ -268,7 +268,7 @@ elif "Atividade" in view_sel:
         df_foco=df_foco,
         df_concorrentes=df_concorrentes,
         nome_empresa=nome_empresa,
-        ano=ano_sel,
+        ano=", ".join(ano_sel),
         escopo=escopo_sel,
     )
 
@@ -279,7 +279,7 @@ elif "Fleuriet" in view_sel:
         df_concorrentes=df_concorrentes,
         df_master_empresa=df_hist_empresa,
         nome_empresa=nome_empresa,
-        ano=ano_sel,
+        ano=", ".join(ano_sel),
         escopo=escopo_sel,
     )
 
@@ -294,4 +294,4 @@ with c1:
         "Fonte: `layer_03_gold.mart_indicadores_financeiros` · Data Contract v1.0.0"
     )
 with c2:
-    st.caption("© 2025 Prof. Me. Ivan Ribeiro Mello")
+    st.caption("© 2026 Lucas, Arthur, Guilherme - Big Data for Finance")
