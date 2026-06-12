@@ -216,6 +216,8 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
 
     with col_box:
         st.markdown("#### Posição no Mercado (Boxplot Setorial)")
+        with st.expander("Como ler um boxplot?"):
+            st.markdown("A linha central é a mediana, o retângulo mostra o 1º e 3º quartis, e os 'bigodes' indicam a variação dentro de 1.5x o IQR. Para mais informações, consulte o seguinte blog: [Como interpretar boxplots](https://fernandafperes.com.br/blog/interpretacao-boxplot/).")
         cols_box = {
             "Liq. Geral": "IND_LIQUIDEZ_GERAL",
             "Liq. Corrente": "IND_LIQUIDEZ_CORRENTE",
@@ -253,12 +255,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
             showlegend=True, legend=dict(orientation="h", y=-0.25),
             yaxis_title="Índice",
         )
-        st.plotly_chart(
-            fig_box, 
-            use_container_width=True,
-            help="O Boxplot mostra a distribuição dos indicadores no setor. A caixa central contém 50% das empresas "
-                 "(do 1º ao 3º quartil). A linha interna é a mediana. O diamante roxo destaca a posição da empresa selecionada."
-        )
+        st.plotly_chart(fig_box, use_container_width=True)
 
     st.markdown("---")
 
