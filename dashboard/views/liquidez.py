@@ -253,7 +253,12 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
             showlegend=True, legend=dict(orientation="h", y=-0.25),
             yaxis_title="Índice",
         )
-        st.plotly_chart(fig_box, use_container_width=True)
+        st.plotly_chart(
+            fig_box, 
+            use_container_width=True,
+            help="O Boxplot mostra a distribuição dos indicadores no setor. A caixa central contém 50% das empresas "
+                 "(do 1º ao 3º quartil). A linha interna é a mediana. O diamante roxo destaca a posição da empresa selecionada."
+        )
 
     st.markdown("---")
 
@@ -297,7 +302,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
                        "fortemente de linhas de crédito para honrar pagamentos imediatos.")
 
     with col_ac:
-        st.markdown("####Composição do Ativo Circulante")
+        st.markdown("#### Composição do Ativo Circulante")
         v_caixa  = df_foco.get("V22_CAIXA_BP", 0) or 0
         v_aplic  = df_foco.get("V15B_APLIC_FIN", 0) or 0
         v_cr     = df_foco.get("V07_CONTAS_RECEBER", 0) or 0
@@ -313,15 +318,17 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
         filtered = [(l, v, c) for l, v, c in zip(labels, values, colors) if v > 0]
         if filtered:
             fl, fv, fc = zip(*filtered)
-            fig_ac = go.Figure(go.Pie(
-                labels=fl, values=fv, hole=0.4,
-                marker=dict(colors=fc),
-                textfont=dict(size=11),
+            fig_ac = go.Figure(go.Bar(
+                x=fl, y=fv,
+                marker_color=fc,
+                text=[f"R$ {v:,.0f}" for v in fv],
+                textposition='auto',
             ))
             fig_ac.update_layout(
-                height=280, margin=dict(t=10, b=10, l=0, r=0),
-                showlegend=True,
-                legend=dict(orientation="h", y=-0.15, font=dict(size=10)),
+                height=300, 
+                margin=dict(t=10, b=10, l=0, r=0),
+                template="simple_white",
+                yaxis_title="Valor (R$)"
             )
             st.plotly_chart(fig_ac, use_container_width=True)
         else:
