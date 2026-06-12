@@ -215,6 +215,8 @@ def render_rentabilidade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
 
     with col_comp:
         st.markdown("#### Comparativo com Setor (Boxplot)")
+        with st.expander("Como ler um boxplot?"):
+            st.markdown("A linha central é a mediana, o retângulo mostra o 1º e 3º quartis, e os 'bigodes' indicam a variação dentro de 1.5x o IQR. Para mais informações, consulte o seguinte blog: [Como interpretar boxplots](https://fernandafperes.com.br/blog/interpretacao-boxplot/).")
         cols_box = {
             "Margem Bruta %": "IND_MARGEM_BRUTA",
             "Margem Op. %": "IND_MARGEM_OPERACIONAL",

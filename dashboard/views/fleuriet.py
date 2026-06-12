@@ -312,12 +312,18 @@ def render_fleuriet_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
 
         if filtered:
             fl, fv, fc = zip(*filtered)
-            fig_ac = go.Figure(go.Pie(
-                labels=fl, values=fv, hole=0.4,
-                marker=dict(colors=fc), textfont=dict(size=10),
+            fig_ac = go.Figure(go.Bar(
+                x=fl, y=fv,
+                marker_color=fc,
+                text=[f"R$ {v:,.0f}" for v in fv],
+                textposition='auto',
             ))
-            fig_ac.update_layout(height=250, margin=dict(t=10, b=10, l=0, r=0),
-                                  legend=dict(orientation="h", y=-0.2, font=dict(size=9)))
+            fig_ac.update_layout(
+                height=300, 
+                margin=dict(t=10, b=10, l=0, r=0),
+                template="simple_white",
+                yaxis_title="Valor (R$)"
+            )
             st.plotly_chart(fig_ac, use_container_width=True)
 
     with col_passivo:
@@ -333,12 +339,18 @@ def render_fleuriet_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
 
         if filtered_pc:
             fl, fv, fc = zip(*filtered_pc)
-            fig_pc = go.Figure(go.Pie(
-                labels=fl, values=fv, hole=0.4,
-                marker=dict(colors=fc), textfont=dict(size=10),
+            fig_pc = go.Figure(go.Bar(
+                x=fl, y=fv,
+                marker_color=fc,
+                text=[f"R$ {v:,.0f}" for v in fv],
+                textposition='auto',
             ))
-            fig_pc.update_layout(height=250, margin=dict(t=10, b=10, l=0, r=0),
-                                  legend=dict(orientation="h", y=-0.2, font=dict(size=9)))
+            fig_pc.update_layout(
+                height=300, 
+                margin=dict(t=10, b=10, l=0, r=0),
+                template="simple_white",
+                yaxis_title="Valor (R$)"
+            )
             st.plotly_chart(fig_pc, use_container_width=True)
 
     st.markdown("---")
@@ -347,6 +359,8 @@ def render_fleuriet_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ROW 5 — Benchmark setorial (boxplot)
     # ------------------------------------------------------------------
     st.markdown("#### Posição Setorial (CGL, NCG, ST)")
+    with st.expander("Como ler um boxplot?"):
+        st.markdown("A linha central é a mediana, o retângulo mostra o 1º e 3º quartis, e os 'bigodes' indicam a variação dentro de 1.5x o IQR. Para mais informações, consulte o seguinte blog: [Como interpretar boxplots](https://fernandafperes.com.br/blog/interpretacao-boxplot/).")    
     cols_bx = {"CGL": "IND_CGL", "NCG": "IND_NCG", "ST": "IND_ST"}
     df_melt = df_concorrentes.melt(
         id_vars=["RAZAO_SOCIAL"],
