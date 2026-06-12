@@ -14,10 +14,10 @@ def render_monitoring_page():
     if not df_auditoria.empty:
         # KPIs
         c1, c2, c3, c4 = st.columns(4)
-        c1.metric("📦 Tabelas", len(df_auditoria))
-        c2.metric("🔢 Total Linhas", f"{df_auditoria['qtd_linhas_int'].sum():,.0f}".replace(",", "."))
-        c3.metric("💾 Tamanho Total", f"{df_auditoria['tamanho_gb'].sum():.2f} GB")
-        c4.metric("🏆 Maior Tabela", f"{df_auditoria['tamanho_mb'].max():.1f} MB")
+        c1.metric("Tabelas", len(df_auditoria))
+        c2.metric("Total Linhas", f"{df_auditoria['qtd_linhas_int'].sum():,.0f}".replace(",", "."))
+        c3.metric("Tamanho Total", f"{df_auditoria['tamanho_gb'].sum():.2f} GB")
+        c4.metric("Maior Tabela", f"{df_auditoria['tamanho_mb'].max():.1f} MB")
         
         st.markdown("---")
         

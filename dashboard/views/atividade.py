@@ -110,7 +110,7 @@ def render_atividade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 1 — Diagrama Visual do Ciclo (timeline horizontal)
     # ------------------------------------------------------------------
-    st.markdown("#### 🕰️ Diagrama do Ciclo Operacional e Financeiro")
+    st.markdown("####Diagrama do Ciclo Operacional e Financeiro")
 
     pmre_d  = v_pmre  if not pd.isna(v_pmre)  else 0
     pmrv_d  = v_pmrv  if not pd.isna(v_pmrv)  else 0
@@ -178,7 +178,7 @@ def render_atividade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 2 — Prazos Médios (KPI cards)
     # ------------------------------------------------------------------
-    st.markdown("#### 📅 Prazos Médios (dias)")
+    st.markdown("####Prazos Médios (dias)")
     c1, c2, c3, c4 = st.columns(4)
     with c1:
         has_estoque = not pd.isna(df_foco.get("V06_ESTOQUES_RAW", np.nan))
@@ -206,7 +206,7 @@ def render_atividade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 3 — Indicadores de Giro (KPI cards)
     # ------------------------------------------------------------------
-    st.markdown("#### 🔄 Giros (vezes por período)")
+    st.markdown("####Giros (vezes por período)")
     c5, c6, c7, c8 = st.columns(4)
     with c5:
         _kpi_card_ativ("Giro de Estoques", v_ge, "x", med_ge, maior_melhor=True,
@@ -230,7 +230,7 @@ def render_atividade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     col_radar, col_hist = st.columns([1, 1])
 
     with col_radar:
-        st.markdown("#### 🕸️ Radar de Eficiência Operacional")
+        st.markdown("####Radar de Eficiência Operacional")
         # Score normalizado: para prazos, menor = melhor → invertemos
         radar_def = [
             ("PMRE (inv.)", "IND_PMRE", False),
@@ -278,7 +278,7 @@ def render_atividade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
         st.plotly_chart(fig_r, use_container_width=True)
 
     with col_hist:
-        st.markdown("#### 📈 Evolução Histórica dos Prazos Médios")
+        st.markdown("####Evolução Histórica dos Prazos Médios")
         cnpj = df_foco.get("CNPJ_CIA", None)
         if cnpj is not None and not df_concorrentes.empty and "CNPJ_CIA" in df_concorrentes.columns:
             df_hist = df_concorrentes[df_concorrentes["CNPJ_CIA"] == cnpj].sort_values("DT_REFER")
@@ -315,7 +315,7 @@ def render_atividade_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 5 — Tabela-resumo
     # ------------------------------------------------------------------
-    st.markdown("#### 📋 Tabela-Resumo de Atividade e Ciclos")
+    st.markdown("####Tabela-Resumo de Atividade e Ciclos")
     resumo = pd.DataFrame({
         "Indicador": [
             "Giro de Estoques",

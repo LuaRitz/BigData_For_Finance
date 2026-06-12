@@ -123,7 +123,7 @@ def render_fleuriet_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 1 — Os três valores-chave do Fleuriet
     # ------------------------------------------------------------------
-    st.markdown("#### 🔑 Os Três Pilares do Modelo Fleuriet")
+    st.markdown("####Os Três Pilares do Modelo Fleuriet")
     c1, c2, c3 = st.columns(3)
 
     with c1:
@@ -161,7 +161,7 @@ def render_fleuriet_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 2 — Diagnóstico do Tipo de Empresa (Fleuriet)
     # ------------------------------------------------------------------
-    st.markdown("#### 🩺 Classificação Fleuriet")
+    st.markdown("####Classificação Fleuriet")
 
     tipo_fleuriet = None
     if not any(pd.isna(x) for x in [v_cgl, v_ncg, v_st]):
@@ -214,7 +214,7 @@ def render_fleuriet_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 3 — Efeito Tesoura (Série Histórica do ST)
     # ------------------------------------------------------------------
-    st.markdown("#### ✂️ Monitoramento do Efeito Tesoura")
+    st.markdown("####Monitoramento do Efeito Tesoura")
     st.caption(
         "O **Efeito Tesoura** ocorre quando o Saldo de Tesouraria se torna progressivamente mais negativo "
         "enquanto a NCG cresce — sinal de insolvência crescente por expansão desordenada."
@@ -293,7 +293,7 @@ def render_fleuriet_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 4 — Decomposição visual: AC e PC operacional vs financeiro
     # ------------------------------------------------------------------
-    st.markdown("#### 🧩 Decomposição Circulante: Operacional × Financeiro")
+    st.markdown("####Decomposição Circulante: Operacional × Financeiro")
     col_ativo, col_passivo = st.columns(2)
 
     with col_ativo:
@@ -346,7 +346,7 @@ def render_fleuriet_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 5 — Benchmark setorial (boxplot)
     # ------------------------------------------------------------------
-    st.markdown("#### ⚖️ Posição Setorial (CGL, NCG, ST)")
+    st.markdown("####Posição Setorial (CGL, NCG, ST)")
     cols_bx = {"CGL": "IND_CGL", "NCG": "IND_NCG", "ST": "IND_ST"}
     df_melt = df_concorrentes.melt(
         id_vars=["RAZAO_SOCIAL"],
@@ -381,7 +381,7 @@ def render_fleuriet_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 6 — Tabela-resumo
     # ------------------------------------------------------------------
-    st.markdown("#### 📋 Tabela-Resumo do Modelo Fleuriet")
+    st.markdown("####Tabela-Resumo do Modelo Fleuriet")
     resumo = pd.DataFrame({
         "Indicador": ["Capital de Giro Líquido (CGL)", "NCG (Nec. Cap. Giro)", "Saldo de Tesouraria (ST)"],
         "Fórmula": ["AC − PC", "ACO − PCO", "ACF − PCF"],

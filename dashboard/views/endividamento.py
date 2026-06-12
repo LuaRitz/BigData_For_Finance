@@ -113,7 +113,7 @@ def render_endividamento_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 1 — Estrutura de Capital (visualização principal)
     # ------------------------------------------------------------------
-    st.markdown("#### 🏛️ Composição do Passivo e Patrimônio")
+    st.markdown("####Composição do Passivo e Patrimônio")
     col_stack, col_waterfall = st.columns([1, 1])
 
     with col_stack:
@@ -168,7 +168,7 @@ def render_endividamento_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 2 — KPI Cards (6 indicadores)
     # ------------------------------------------------------------------
-    st.markdown("#### 📊 Indicadores de Endividamento e Imobilização")
+    st.markdown("####Indicadores de Endividamento e Imobilização")
     c1, c2, c3 = st.columns(3)
     c4, c5, c6 = st.columns(3)
 
@@ -205,7 +205,7 @@ def render_endividamento_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     col_radar, col_hist = st.columns([1, 1])
 
     with col_radar:
-        st.markdown("#### 🕸️ Perfil de Risco Comparativo (Radar)")
+        st.markdown("####Perfil de Risco Comparativo (Radar)")
         # Normaliza indicadores para 0-1 para radar
         cols_radar = {
             "PCT/CP (inv.)": ("IND_PCT_CP", False),
@@ -261,7 +261,7 @@ def render_endividamento_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
         st.caption("Score 0–1 normalizado pelo P5–P95 do setor. Maior = melhor posição relativa.")
 
     with col_hist:
-        st.markdown("#### 📈 Evolução Histórica do Endividamento")
+        st.markdown("####Evolução Histórica do Endividamento")
         cnpj = df_foco.get("CNPJ_CIA", None)
         if cnpj is not None and not df_concorrentes.empty and "CNPJ_CIA" in df_concorrentes.columns:
             df_hist = df_concorrentes[df_concorrentes["CNPJ_CIA"] == cnpj].sort_values("DT_REFER")
@@ -296,7 +296,7 @@ def render_endividamento_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 4 — Diagnóstico qualitativo
     # ------------------------------------------------------------------
-    st.markdown("#### 🩺 Diagnóstico de Estrutura de Capital")
+    st.markdown("####Diagnóstico de Estrutura de Capital")
     d1, d2 = st.columns(2)
 
     with d1:
@@ -347,7 +347,7 @@ def render_endividamento_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 5 — Tabela-resumo
     # ------------------------------------------------------------------
-    st.markdown("#### 📋 Tabela-Resumo dos Indicadores de Endividamento")
+    st.markdown("####Tabela-Resumo dos Indicadores de Endividamento")
     resumo = pd.DataFrame({
         "Indicador": [
             "PCT / Capital Próprio",

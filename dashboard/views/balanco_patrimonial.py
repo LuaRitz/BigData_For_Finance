@@ -201,7 +201,7 @@ def render_bp_page():
     st.markdown("###")
 
     # --- 6. VISUALIZAÇÃO: GRÁFICO AVANÇADO (SUBPLOTS) ---
-    st.subheader("✅ Validação e Crescimento")
+    st.subheader("Validação e Crescimento")
     
     eixo_x_str = [str(d) for d in cols_dates] 
 
@@ -337,7 +337,7 @@ def render_bp_page():
     st.plotly_chart(fig, use_container_width=True)
 
     # --- 7. NOTA EXPLICATIVA ---
-    with st.expander("ℹ️ Entenda as Métricas de Crescimento"):
+    with st.expander("Entenda as Métricas de Crescimento"):
         st.markdown(f"""
         **1. CAGR ({cagr_val:.1%}):** *Compound Annual Growth Rate* (Taxa de Crescimento Anual Composta). 
         Representa a taxa de retorno necessária para um investimento crescer do seu saldo inicial para o saldo final, assumindo que os lucros foram reinvestidos ao final de cada ano da vida do investimento.

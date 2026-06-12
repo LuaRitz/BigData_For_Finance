@@ -158,7 +158,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 2 — Gauges visuais
     # ------------------------------------------------------------------
-    st.markdown("#### 🎯 Termômetros de Solvência")
+    st.markdown("####Termômetros de Solvência")
     g1, g2, g3, g4 = st.columns(4)
     with g1:
         st.plotly_chart(_gauge(v_lg, "Liquidez Geral", 0, 3, 1.0, 0.7), use_container_width=True)
@@ -177,7 +177,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     col_hist, col_box = st.columns([1, 1])
 
     with col_hist:
-        st.markdown("#### 📈 Evolução Histórica dos Índices")
+        st.markdown("####Evolução Histórica dos Índices")
 
         # Filtra todos os períodos da empresa selecionada no df_master (passado via concorrentes trick)
         cnpj = df_foco.get("CNPJ_CIA", None)
@@ -215,7 +215,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
             st.info("Histórico multi-período não disponível neste escopo de filtro.")
 
     with col_box:
-        st.markdown("#### ⚖️ Posição no Mercado (Boxplot Setorial)")
+        st.markdown("####Posição no Mercado (Boxplot Setorial)")
         cols_box = {
             "Liq. Geral": "IND_LIQUIDEZ_GERAL",
             "Liq. Corrente": "IND_LIQUIDEZ_CORRENTE",
@@ -263,7 +263,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     col_diag, col_ac = st.columns([1, 1])
 
     with col_diag:
-        st.markdown("#### 🩺 Diagnóstico de Solvência")
+        st.markdown("####Diagnóstico de Solvência")
 
         def _diag(label, valor, ok_threshold, warn_threshold, maior_melhor=True):
             if pd.isna(valor):
@@ -297,7 +297,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
                        "fortemente de linhas de crédito para honrar pagamentos imediatos.")
 
     with col_ac:
-        st.markdown("#### 🧩 Composição do Ativo Circulante")
+        st.markdown("####Composição do Ativo Circulante")
         v_caixa  = df_foco.get("V22_CAIXA_BP", 0) or 0
         v_aplic  = df_foco.get("V15B_APLIC_FIN", 0) or 0
         v_cr     = df_foco.get("V07_CONTAS_RECEBER", 0) or 0
@@ -332,7 +332,7 @@ def render_liquidez_page(df_foco: pd.Series, df_concorrentes: pd.DataFrame,
     # ------------------------------------------------------------------
     # ROW 5 — Tabela-resumo
     # ------------------------------------------------------------------
-    st.markdown("#### 📋 Tabela-Resumo dos Indicadores de Liquidez")
+    st.markdown("####Tabela-Resumo dos Indicadores de Liquidez")
 
     resumo = pd.DataFrame({
         "Indicador": [
